@@ -1,23 +1,23 @@
 using Interfaces;
-using WcfService.Services;
+using WcfService.Repositories;
 
 namespace WcfService
 {
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-    public class Service : IService
+    public class ClientWcfService : IClientWcfService
     {
         private readonly IConfiguration configuration;
-        private readonly IClientService clientService;
+        private readonly IClientRepository clientRepository;
 
-        public Service(IConfiguration configuration, IClientService clientService)
+        public ClientWcfService(IConfiguration configuration, IClientRepository clientRepository)
         {
             this.configuration = configuration;
-            this.clientService = clientService;
+            this.clientRepository = clientRepository;
         }
 
         public ICollection<Client> GetClients()
         {
-            return clientService.GetClients();
+            return clientRepository.GetClients();
         }
 
         public bool AddClient(Client client)
@@ -26,7 +26,7 @@ namespace WcfService
 
             if (allowClientCreation) 
             {
-                return clientService.AddClient(client);
+                return clientRepository.AddClient(client);
             }
 
             return false;

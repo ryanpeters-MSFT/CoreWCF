@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace Interfaces
 {
     [ServiceContract]
-    public interface IService
+    public interface IClientWcfService
     {
         [OperationContract]
         [WebGet(UriTemplate = "/clients")]

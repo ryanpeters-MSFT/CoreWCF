@@ -1,8 +1,8 @@
 ﻿using Interfaces;
 
-namespace WcfService.Services
+namespace WcfService.Repositories
 {
-    public interface IClientService
+    public interface IClientRepository
     {
         Client GetClient(Guid id);
 

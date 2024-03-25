@@ -1,8 +1,8 @@
 ﻿using Interfaces;
 
-namespace WcfService.Services
+namespace WcfService.Repositories
 {
-    public class MockClientService : IClientService
+    public class MockClientRepository : IClientRepository
     {
         private static readonly ICollection<Client> _clients =
         [

@@ -9,7 +9,7 @@ using System.ServiceModel;
 var binding = new BasicHttpBinding();
 var endpoint = new EndpointAddress("http://127.0.0.1:5189/service.svc");
 
-var factory = new ChannelFactory<IService>(binding, endpoint);
+var factory = new ChannelFactory<IClientWcfService>(binding, endpoint);
 
 // add custom client behaviors
 factory.Endpoint.EndpointBehaviors.Add(new CustomEndpointBehavior());
@@ -33,3 +33,10 @@ foreach (var client in clients)
 {
     Console.WriteLine($"[{client.Id}] {client.Name}, aged {client.Age}");
 }
+
+// get clients using JSON endpoint
+var httpClient = new HttpClient();
+
+var clientsJson = await httpClient.GetStringAsync("http://127.0.0.1:5189/json/clients");
+
+Console.WriteLine(clientsJson);

@@ -1,11 +1,11 @@
 ﻿using Interfaces;
-using WcfService.Services;
+using WcfService.Repositories;
 
 var builder = WebApplication.CreateBuilder();
 
 builder.Configuration.AddEnvironmentVariables();
-builder.Services.AddTransient<Service>(); // required for DI to work with service endpoint type
-builder.Services.AddSingleton<IClientService, MockClientService>();
+builder.Services.AddTransient<ClientWcfService>(); // required for DI to work with service endpoint type
+builder.Services.AddSingleton<IClientRepository, MockClientRepository>();
 
 builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelWebServices(); // required for Web HTTP endpoint
@@ -20,22 +20,22 @@ var app = builder.Build();
 
 app.UseServiceModel(serviceBuilder =>
 {
-    serviceBuilder.AddService<Service>();
+    serviceBuilder.AddService<ClientWcfService>();
 
     // TCP endpoint
-    //serviceBuilder.AddServiceEndpoint<Service, IService>(new NetTcpBinding(), "/Service.svc", config =>
+    //serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new NetTcpBinding(), "/Service.svc", config =>
     //{
     //    //config.EndpointBehaviors.Add(new MyServiceEndpointBehavior());
     //});
 
     // Basic HTTP endpoint
-    serviceBuilder.AddServiceEndpoint<Service, IService>(new BasicHttpBinding(), "/Service.svc", config =>
+    serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new BasicHttpBinding(), "/Service.svc", config =>
     {
         config.EndpointBehaviors.Add(new MyServiceEndpointBehavior());
     });
 
     // Web HTTP endpoint (w/ JSON)
-    serviceBuilder.AddServiceWebEndpoint<Service, IService>("json", config => config.DefaultOutgoingResponseFormat = CoreWCF.Web.WebMessageFormat.Json);
+    serviceBuilder.AddServiceWebEndpoint<ClientWcfService, IClientWcfService>("json", config => config.DefaultOutgoingResponseFormat = CoreWCF.Web.WebMessageFormat.Json);
 
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpGetEnabled = true;
