@@ -4,6 +4,7 @@ using WcfService.Repositories;
 var builder = WebApplication.CreateBuilder();
 
 builder.Configuration.AddEnvironmentVariables();
+
 builder.Services.AddTransient<ClientWcfService>(); // required for DI to work with service endpoint type
 builder.Services.AddSingleton<IClientRepository, MockClientRepository>();
 
@@ -13,7 +14,7 @@ builder.Services.AddServiceModelMetadata();
 
 // Applies additional service behaviors
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>(); // enables retrieval of metadata address info from request headers
-builder.Services.AddSingleton<IServiceBehavior, CustomServiceBehavior>();
+//builder.Services.AddSingleton<IServiceBehavior, CustomServiceBehavior>();
 
 // TCP only
 //builder.WebHost.UseNetTcp(8111);
@@ -55,7 +56,10 @@ app.UseServiceModel(serviceBuilder =>
     serviceBuilder.ConfigureServiceHostBase<ClientWcfService>(serviceHostBase =>
     {
         // Optionally configure service behaviors
-        var behavior = serviceHostBase.Description.Behaviors.Find<CustomServiceBehavior>();
+        //var behavior = serviceHostBase.Description.Behaviors.Find<CustomServiceBehavior>();
+
+        // Or, add a behavior to this specific service
+        serviceHostBase.Description.Behaviors.Add(new CustomServiceBehavior());
     }); 
 
     #endregion
