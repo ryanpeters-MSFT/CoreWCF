@@ -1,17 +1,16 @@
 using Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using WcfService.Repositories;
 
 namespace WcfService
 {
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-    public class ClientWcfService : IClientWcfService
+    public partial class ClientWcfService : IClientWcfService
     {
-        private readonly IConfiguration configuration;
         private readonly IClientRepository clientRepository;
 
-        public ClientWcfService(IConfiguration configuration, IClientRepository clientRepository)
+        public ClientWcfService(IClientRepository clientRepository)
         {
-            this.configuration = configuration;
             this.clientRepository = clientRepository;
         }
 
@@ -20,7 +19,7 @@ namespace WcfService
             return clientRepository.GetClients();
         }
 
-        public bool AddClient(Client client)
+        public bool AddClient(Client client, [FromServices] IConfiguration configuration)
         {
             var allowClientCreation = bool.Parse(configuration["AllowClientCreation"]);
 
