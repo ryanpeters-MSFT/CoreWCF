@@ -11,3 +11,10 @@ This simple example demonstrates a client and server implementation of WCF servi
 - **CoreWCF.NetTcp** - Supports NET.TCP bindings
 - **CoreWCF.Http** - Supports HTTP bindings
 - **CoreWCF.WebHttp** - Supports web/JSON bindings
+
+## Installation
+
+``` powershell
+dotnet new --install CoreWCF.Templates
+dotnet new corewcf -n MyWcfService
+```
