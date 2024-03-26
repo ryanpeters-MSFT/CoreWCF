@@ -1,13 +1,15 @@
 ﻿using Interfaces;
 using System.ServiceModel;
 
+var baseUri = new Uri("http://127.0.0.1:5189");
+
 // TCP ENDPOINT
 //var binding = new NetTcpBinding();
 //var endpoint = new EndpointAddress("net.tcp://127.0.0.1:8111/service.svc");
 
 // HTTP ENDPOINT
 var binding = new BasicHttpBinding();
-var endpoint = new EndpointAddress("http://127.0.0.1:5189/service.svc");
+var endpoint = new EndpointAddress(new Uri(baseUri, "service.svc"));
 
 var factory = new ChannelFactory<IClientWcfService>(binding, endpoint);
 
@@ -37,6 +39,6 @@ foreach (var client in clients)
 // get clients using JSON endpoint
 var httpClient = new HttpClient();
 
-var clientsJson = await httpClient.GetStringAsync("http://127.0.0.1:5189/json/clients");
+var clientsJson = await httpClient.GetStringAsync(new Uri(baseUri, "json/clients"));
 
 Console.WriteLine(clientsJson);

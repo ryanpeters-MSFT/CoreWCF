@@ -11,8 +11,8 @@ builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelWebServices(); // required for Web HTTP endpoint
 builder.Services.AddServiceModelMetadata();
 
-// Applies additional WSDL behavior
-builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
+// Applies additional service behaviors
+builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>(); // enables retrieval of metadata address info from request headers
 builder.Services.AddSingleton<IServiceBehavior, CustomServiceBehavior>();
 
 // TCP only
