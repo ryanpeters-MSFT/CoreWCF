@@ -1,6 +1,10 @@
 ﻿using Interfaces;
 using System.ServiceModel;
 
+// wait for WCF service to spin-up
+Console.WriteLine("Waiting 5 seconds for service to become available...");
+Thread.Sleep(5000);
+
 var baseUri = new Uri("http://127.0.0.1:5189");
 
 // TCP ENDPOINT
