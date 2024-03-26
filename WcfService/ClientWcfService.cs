@@ -4,6 +4,7 @@ using WcfService.Repositories;
 
 namespace WcfService
 {
+    // the "partial" class keyword is required for code generation
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public partial class ClientWcfService : IClientWcfService
     {

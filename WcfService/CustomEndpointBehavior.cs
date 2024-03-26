@@ -2,7 +2,7 @@
 
 namespace WcfService
 {
-    public class MyServiceEndpointBehavior : IEndpointBehavior
+    public class CustomEndpointBehavior : IEndpointBehavior
     {
         public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters)
         {
