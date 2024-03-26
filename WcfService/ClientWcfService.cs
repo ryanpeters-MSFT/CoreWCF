@@ -1,5 +1,6 @@
 using Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using WcfService.Repositories;
 
 namespace WcfService
@@ -30,6 +31,13 @@ namespace WcfService
             }
 
             return false;
+        }
+
+        public Stream GetDocument()
+        {
+            var junk = "let's pretend that this is a file and is being streamed back to the caller";
+
+            return new MemoryStream(Encoding.UTF8.GetBytes(junk));
         }
     }
 }

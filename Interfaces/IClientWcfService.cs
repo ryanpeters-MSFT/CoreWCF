@@ -12,5 +12,9 @@ namespace Interfaces
 
         [OperationContract]
         bool AddClient(Client client);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/file")]
+        Stream GetDocument();
     }
 }
