@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/WcfService/bin/Debug/net7.0/WcfService.dll",
+            "program": "${workspaceFolder}/WcfService/bin/Debug/net8.0/WcfService.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WcfService",
             "stopAtEntry": false,
