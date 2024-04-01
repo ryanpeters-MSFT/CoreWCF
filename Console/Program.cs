@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using System.IO;
 using System.ServiceModel;
 
 // wait for WCF service to spin-up
