@@ -14,7 +14,7 @@ builder.Services.AddServiceModelMetadata();
 
 // Applies additional service behaviors
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>(); // enables retrieval of metadata address info from request headers
-//builder.Services.AddSingleton<IServiceBehavior, CustomServiceBehavior>();
+builder.Services.AddSingleton<IServiceBehavior, CustomServiceBehavior>();
 
 // TCP only
 //builder.WebHost.UseNetTcp(8111);
@@ -30,7 +30,7 @@ app.UseServiceModel(serviceBuilder =>
     // TCP endpoint
     //serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new NetTcpBinding(), "/Service.svc", config =>
     //{
-    //    //config.EndpointBehaviors.Add(new MyServiceEndpointBehavior());
+    //    //config.EndpointBehaviors.Add(new CustomEndpointBehavior());
     //});
 
     // Basic HTTP endpoint
@@ -56,10 +56,10 @@ app.UseServiceModel(serviceBuilder =>
     serviceBuilder.ConfigureServiceHostBase<ClientWcfService>(serviceHostBase =>
     {
         // Optionally configure service behaviors
-        //var behavior = serviceHostBase.Description.Behaviors.Find<CustomServiceBehavior>();
+        var behavior = serviceHostBase.Description.Behaviors.Find<CustomServiceBehavior>();
 
         // Or, add a behavior to this specific service
-        serviceHostBase.Description.Behaviors.Add(new CustomServiceBehavior());
+        //serviceHostBase.Description.Behaviors.Add(new CustomServiceBehavior());
     }); 
 
     #endregion
