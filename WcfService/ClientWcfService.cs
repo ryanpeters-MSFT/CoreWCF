@@ -39,5 +39,10 @@ namespace WcfService
 
             return new MemoryStream(Encoding.UTF8.GetBytes(junk));
         }
+
+        public void SendNotification(string email)
+        {
+            //
+        }
     }
 }

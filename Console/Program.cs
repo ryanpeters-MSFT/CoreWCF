@@ -79,3 +79,6 @@ var fileBytes = await httpClient.GetByteArrayAsync(new Uri(baseUri, "json/file")
 Console.WriteLine($"\nReceived file (REST) w/ a length of {fileBytes.Length} bytes");
 
 #endregion
+
+// fire and forget
+channel.SendNotification("ryanpeters@microsoft.com");

@@ -16,5 +16,8 @@ namespace Interfaces
         [OperationContract]
         [WebGet(UriTemplate = "/file")]
         Stream GetDocument();
+
+        [OperationContract(IsOneWay = true)]
+        void SendNotification(string email);
     }
 }
