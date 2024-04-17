@@ -1,6 +1,6 @@
 # CoreWCF Sample
 
-This simple example demonstrates a client and server implementation of WCF services using [CoreWCF](https://github.com/CoreWCF/CoreWCF). This example includes Basic HTTP, TCP, and JSON endpoint examples for both the client and server applications. 
+This simple example demonstrates a client and server implementation of WCF services using [CoreWCF](https://github.com/CoreWCF/CoreWCF). This example includes Basic HTTP (`BasicHttpBinding`), WS HTTP (`WSHttpBinding`), TCP (`NetTcpBinding`), and RESTful/JSON (`WebHttpBinding`) endpoint binding examples for both the client and server applications. 
 
 - **Client** - Console application demonstarting use of the `ClientFactory` and a custom client endpoint behavior. 
 - **Interfaces** - Common object types and service interfaces
@@ -28,4 +28,5 @@ For the latter scenario, the `partial` modifier is required for the `ClientWcfSe
 
 ## Links
 
+- [CoreWCF Samples](https://github.com/CoreWCF/samples/tree/main)
 - [Upgrading a WCF service to .NET 6 with CoreWCF](https://devblogs.microsoft.com/dotnet/upgrading-a-wcf-service-to-dotnet-6/)
