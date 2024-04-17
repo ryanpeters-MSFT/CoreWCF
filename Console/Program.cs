@@ -24,7 +24,7 @@ var endpoint = new EndpointAddress(new Uri(baseUri, "service.svc"));
 var factory = new ChannelFactory<IClientWcfService>(binding, endpoint);
 
 // optionally, add custom client behaviors
-//factory.Endpoint.EndpointBehaviors.Add(new CustomEndpointBehavior());
+factory.Endpoint.EndpointBehaviors.Add(new CustomEndpointBehavior());
 
 /***************************************************************/
 
