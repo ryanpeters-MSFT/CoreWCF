@@ -27,14 +27,20 @@ app.UseServiceModel(serviceBuilder =>
 
     #region Endpoints and Bindings
 
-    // TCP endpoint
+    // TCP BINDING ENDPOINT
     //serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new NetTcpBinding(), "/Service.svc", config =>
     //{
-    //    //config.EndpointBehaviors.Add(new CustomEndpointBehavior());
+    //    config.EndpointBehaviors.Add(new CustomEndpointBehavior());
     //});
 
-    // Basic HTTP endpoint
-    serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new BasicHttpBinding(), "/Service.svc", config =>
+    // BASIC HTTP BINDING ENDPOINT
+    //serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new BasicHttpBinding(), "/Service.svc", config =>
+    //{
+    //    config.EndpointBehaviors.Add(new CustomEndpointBehavior());
+    //});
+
+    // WS HTTP BINDING ENDPOINT
+    serviceBuilder.AddServiceEndpoint<ClientWcfService, IClientWcfService>(new WSHttpBinding(SecurityMode.None), "/Service.svc", config =>
     {
         config.EndpointBehaviors.Add(new CustomEndpointBehavior());
     });
